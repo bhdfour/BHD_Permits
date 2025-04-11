@@ -1,1 +1,1 @@
-streamlit
+streamlit\npandas\nplotly\nrequests
