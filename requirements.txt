@@ -1,1 +1,1 @@
-streamlit\npandas\nplotly\nrequests
+streamlit==1.32.2\npandas\nplotly\nrequests
