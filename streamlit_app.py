@@ -1,6 +1,4 @@
 import streamlit as st
-st.write("✅ App is loading...")
-
 import pandas as pd
 import requests
 import plotly.express as px
@@ -30,9 +28,7 @@ st.markdown("""
 # Read csvs from GitHub
 @st.cache_data
 def load_and_prepare_data():
-    df1 = pd.read_csv("BuildingPermitsA.csv")
-    df2 = pd.read_csv("BuildingPermitsB.csv")
-    records = pd.concat([df1, df2])
+    records = pd.read_csv("BuildingPermits2019_2024,csv")
     status = pd.read_csv("StatusTable.csv")
     types = pd.read_csv("RecordType.csv")
 
@@ -63,7 +59,7 @@ st.sidebar.markdown("---")
 st.sidebar.title("🌤️ Weather Outlook")
 
 def get_weather(lat=34.0, lon=-84.0): #rounded coordinates from the dataset
-    future_time = (datetime.utcnow() + timedelta(hours=24)).strftime('%Y-%m-%dT%H:00')
+    future_time = (datetime.now() + timedelta(hours=24)).strftime('%Y-%m-%dT%H:00')
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
         "latitude": lat,
