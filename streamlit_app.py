@@ -28,7 +28,9 @@ st.markdown("""
 # Read csvs from GitHub
 @st.cache_data
 def load_and_prepare_data():
-    records = pd.read_csv("BuildingPermits2019_2024,csv")
+    df1 = pd.read_csv("BuildingPermitsA.csv", quotechar='"', encoding="utf-8", dtype={"ADDR FULL LINE#": str})
+    df2 = pd.read_csv("BuildingPermitsB.csv", quotechar='"', encoding="utf-8", dtype={"ADDR FULL LINE#": str})
+    records = pd.concat([df1, df2])
     status = pd.read_csv("StatusTable.csv")
     types = pd.read_csv("RecordType.csv")
 
@@ -42,6 +44,7 @@ def load_and_prepare_data():
 
     # Get zip from records, ignore 0
     df["ZipCode"] = df["ADDR FULL LINE#"].astype(str).str[-5:]
+    df["ZipCode"] = df["ZipCode"].astype(str).str.zfill(5)
     df = df[df["ZipCode"].str.match(r"^\d{5}$") & (df["ZipCode"] != "00000")]
 
     return df
@@ -108,6 +111,8 @@ combo_counts = (
     .reset_index(name="Count")
 )
 
+combo_counts["ZipCode"] = combo_counts["ZipCode"].astype(str).str.zfill(5)
+
 if combo_counts.empty:
     st.warning("No permit data available for the selected year.")
 else:
@@ -121,8 +126,11 @@ else:
         orientation="h",
         title="Permit Volume by Zip Code and Final Status",
         labels={"Count": "Permit Count", "ZipCode": "Zip Code"},
-        height=600
+        height=600,
+        category_orders={"ZipCode": combo_counts["ZipCode"].tolist()}
     )
+
+    fig.update_layout(yaxis_tickformat="")
 
     st.plotly_chart(fig, use_container_width=True)
 
