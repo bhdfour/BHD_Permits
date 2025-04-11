@@ -1,0 +1,26 @@
+RECORD TYPE,SimpleType
+Residential Alteration,Residential 
+Multi Family Alteration,Multi 
+Residential Misc. Non-Structural,Residential 
+Residential Addition,Residential 
+Commercial Alteration,Commercial 
+Residential Misc. Structural,Residential 
+Commercial Misc. Non-Structural,Commercial 
+Residential Demolition,Residential 
+Commercial Demolition,Commercial 
+Residential New,Residential 
+Commercial Conversion,Commercial 
+Multi Family New,Multi 
+Commercial Misc. Structural,Commercial 
+Commercial New,Commercial 
+Commercial Addition,Commercial 
+Residential Conversion,Residential 
+Multi Family Demolition,Multi 
+Multi Family Addition,Multi 
+Multi Family Conversion,Multi 
+Commercial Miscellaneous,Commercial 
+Multi Family Miscellaneous,Multi 
+Multi Family Land Development,Multi 
+Commercial Land Development,Commercial 
+Subdivision,Subdivision
+Residential Land Subdivision,Residential 
