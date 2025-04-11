@@ -1,4 +1,6 @@
 import streamlit as st
+st.write("✅ App is loading...")
+
 import pandas as pd
 import requests
 import plotly.express as px
@@ -28,7 +30,9 @@ st.markdown("""
 # Read csvs from GitHub
 @st.cache_data
 def load_and_prepare_data():
-    records = pd.read_csv("BuildingPermits2019_2024.csv")
+    df1 = pd.read_csv("BuildingPermitsA.csv")
+    df2 = pd.read_csv("BuildingPermitsB.csv")
+    records = pd.concat([df1, df2])
     status = pd.read_csv("StatusTable.csv")
     types = pd.read_csv("RecordType.csv")
 
