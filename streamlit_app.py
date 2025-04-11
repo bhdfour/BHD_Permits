@@ -131,6 +131,7 @@ else:
     )
 
     fig.update_layout(yaxis_tickformat="")
+    fig.update_yaxes(type="category")
 
     st.plotly_chart(fig, use_container_width=True)
 
